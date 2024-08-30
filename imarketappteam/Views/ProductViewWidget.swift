@@ -6,11 +6,9 @@
 //
 
 import SwiftUI
-
 struct ProductViewWidget: View {
     @ObservedObject var viewModel: ProductListVM
     var item: Product
-
     var body: some View {
         VStack {
             HStack {
@@ -38,4 +36,13 @@ struct ProductViewWidget: View {
                             RoundedRectangle(cornerRadius: 5)
                                 .foregroundStyle(Color("CategoryGray"))
                         }
-                   
+                    HStack {
+                        Button {
+                            if viewModel.cartItems.contains(where: {$0.id == item.id} ) {
+                                if let index = viewModel.cartItems.firstIndex(where: {$0.id == item.id}) {
+                                    viewModel.cartItems.remove(at: index)
+                                }
+                            } else {
+                                viewModel.cartItems.append(item)
+                            }
+

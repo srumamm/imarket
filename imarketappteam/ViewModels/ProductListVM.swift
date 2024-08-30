@@ -9,16 +9,16 @@ import Foundation
 
 class ProductListVM: ObservableObject {
     @Published var products: [Product] = []
-    @Published var favorites: [Product] = []
-    @Published var cart: [Product] = []
+    @Published var likedItems: [Product] = []
+    @Published var cartItems: [Product] = []
     
     func fetchProducts() async throws {
         self.products = try await ProductService.fetchProducts()
     }
     
-    func calcTotal() -> Double {
+    func cartCalcTotal() -> Double {
         var sum = 0.0
-        for product in cart {
+        for product in cartItems {
             sum += product.price
         }
         return sum

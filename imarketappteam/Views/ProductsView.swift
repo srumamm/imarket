@@ -10,7 +10,6 @@ import SwiftUI
 struct ProductsView: View {
     @ObservedObject var viewModel: ProductListVM
     @State private var searchBar: String = ""
-    
     var body: some View {
         NavigationStack {
             VStack {
@@ -28,7 +27,6 @@ struct ProductsView: View {
                     }
                 }
                 .searchable(text: $searchBar, prompt: "What are you looking for?")
-                
             }
             .background {
                 Color("BackgroundGray")
@@ -43,9 +41,9 @@ struct ProductsView: View {
             }
         }
     }
-    
-}
+
 #Preview {
     ProductsView(viewModel: ProductListVM())
         .preferredColorScheme(.dark)
 }
+

@@ -13,12 +13,12 @@ struct ItemsView: View {
         var body: some View {
             NavigationStack {
                 VStack {
-                    if viewModel.favorites.isEmpty {
+                    if viewModel.likedItems.isEmpty {
                         Text ("Nothing here yet!")
                             .foregroundColor(.gray)
                     } else {
                         ScrollView {
-                            ForEach(viewModel.favorites) { product in
+                            ForEach(viewModel.likedItems) { product in
                                 ProductViewWidget(viewModel: viewModel, item: product)
                             }
                         }

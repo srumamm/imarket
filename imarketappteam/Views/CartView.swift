@@ -55,7 +55,7 @@ struct CartView: View {
                 .padding(.leading)
                 
                 ScrollView {
-                    ForEach(viewModel.cart) { item in
+                    ForEach(viewModel.cartItems) { item in
                         CartViewWidget(item: item)
                     }
                     VStack {
@@ -67,7 +67,7 @@ struct CartView: View {
                             Image(systemName: "chevron.down")
                         }
                         HStack {
-                            Text("\(viewModel.cart.count) \(viewModel.cart.count == 1 ? "item" : "items")")
+                            Text("\(viewModel.cartItems.count) \($viewModel.cartItems.count == 1 ? "item" : "items")")
                                 .foregroundColor(.white)
                             Spacer()
                         }
@@ -81,7 +81,7 @@ struct CartView: View {
                 }
                 
                 Button {
-                    viewModel.cart.removeAll()
+                    viewModel.cartItems.removeAll()
                     totalAmount = 0.0
                 } label: {
                     Text("Check out")
@@ -97,7 +97,7 @@ struct CartView: View {
         }
         .preferredColorScheme(.dark)
         .onAppear {
-            totalAmount = viewModel.calcTotal()
+            totalAmount = viewModel.cartCalcTotal()
         }
     }
 }
